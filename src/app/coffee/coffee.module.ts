@@ -3,15 +3,23 @@ import { CommonModule } from '@angular/common';
 
 import { CoffeeRoutingModule } from './coffee-routing.module';
 import { CoffeeComponent } from './coffee.component';
+import { SidenavComponent } from './sidenav/sidenav.component';
+import { CoffeeListModule } from './coffee-list/coffee-list.module';
+import { CoffeeDetailsModule } from './coffee-details/coffee-details.module';
+import { MaterialExampleModule } from '../material.modulet';
 
 
 @NgModule({
   declarations: [
-    CoffeeComponent
+    CoffeeComponent,
+    SidenavComponent,
   ],
   imports: [
     CommonModule,
-    CoffeeRoutingModule
+    CoffeeRoutingModule,
+    CoffeeListModule,
+    CoffeeDetailsModule,
+    MaterialExampleModule,
   ]
 })
 export class CoffeeModule { }

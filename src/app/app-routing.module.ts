@@ -12,9 +12,20 @@ const routes: Routes = [
     loadChildren: () =>
       import('./home/home.module').then((m) => m.HomeModule)
   },
-  { path: 'coffee',
+  {
+    path: 'coffee',
     loadChildren: () =>
-      import('./coffee/coffee.module').then(m => m.CoffeeModule) },
+      import('./coffee/coffee.module').then(m => m.CoffeeModule)
+  },
+  // {
+  //   path: 'coffee-list',
+  //   loadChildren: () =>
+  //     import('./coffee/coffee-list/coffee-list.module').then(m => m.CoffeeListModule)
+  // },
+  // { path: 'coffee-details',
+  //   loadChildren: () =>
+  //     import('./coffee/coffee-details/coffee-details.module').then(m => m.CoffeeDetailsModule)
+  // },
 
 ];
 
