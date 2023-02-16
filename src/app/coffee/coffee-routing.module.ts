@@ -10,11 +10,11 @@ const routes: Routes = [
     component: CoffeeComponent,
     children: [
       {
-        path: 'coffee-list',
+        path: '',
         component: CoffeeListComponent
       },
       {
-        path: 'coffee-details',
+        path: ':id',
         component: CoffeeDetailsComponent
       }
     ]

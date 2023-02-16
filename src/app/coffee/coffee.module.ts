@@ -3,16 +3,16 @@ import { CommonModule } from '@angular/common';
 
 import { CoffeeRoutingModule } from './coffee-routing.module';
 import { CoffeeComponent } from './coffee.component';
-import { SidenavComponent } from './sidenav/sidenav.component';
 import { CoffeeListModule } from './coffee-list/coffee-list.module';
 import { CoffeeDetailsModule } from './coffee-details/coffee-details.module';
 import { MaterialExampleModule } from '../material.modulet';
+import { StoreModule } from '@ngrx/store';
+import * as coffeeReducers from './coffee-list/coffee-list.reducer';
 
 
 @NgModule({
   declarations: [
     CoffeeComponent,
-    SidenavComponent,
   ],
   imports: [
     CommonModule,
@@ -20,6 +20,7 @@ import { MaterialExampleModule } from '../material.modulet';
     CoffeeListModule,
     CoffeeDetailsModule,
     MaterialExampleModule,
+    StoreModule.forFeature(coffeeReducers.featureKey, coffeeReducers.coffeeReducer)
   ]
 })
 export class CoffeeModule { }

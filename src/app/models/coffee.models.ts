@@ -1,8 +1,9 @@
-export interface Coffee {
+export interface ICoffeeInfo {
     id: number,
     uid: string,
     blend_name: string,
+    origin: string,
     variety: string,
-    notes: [],
+    notes: string,
     intensifier: string,
   }
