@@ -27,14 +27,15 @@ export class CoffeeListComponent implements OnInit {
     //
 
   showCoffees() {
-    const nCoffee = 10;
+    const nCoffee = 3;
     for (let i = 0; i < nCoffee; i++){
       this.coffeeService.getCoffee()
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe((data: ICoffeeInfo) => {
         this.store.dispatch(coffeesActions.ADD_COFFEE({coffee: data}));
-        console.log(this.coffees$);
-        this.coffees$ = this.store.select(coffeeSelectors.selectCoffees);
+        console.log("this.coffees$" ,this.coffees$);
+        // this.coffees$ = this.store.select(coffeeSelectors.selectCoffees);
+        // console.log("this.store.select(coffeeSelectors.selectCoffees)" ,this.coffees$);
       });
     }
   }
