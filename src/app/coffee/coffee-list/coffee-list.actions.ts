@@ -1,7 +1,7 @@
-import { Action, createAction, props } from '@ngrx/store';
+import { createAction, props } from '@ngrx/store';
 import { ICoffeeInfo } from '../../models/coffee.models';
 
-export const ADD_COFFEE = createAction(
+export const add_coffee = createAction(
   '[CoffeeList Component] Add Coffee',
   props <{ coffee: ICoffeeInfo}>()
   );

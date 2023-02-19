@@ -6,9 +6,9 @@ export interface AppState {
 }
 
 export const selectCoffeesSliceState =
-createFeatureSelector<coffeeReducers.CoffeesState>(coffeeReducers.featureKey);
+  createFeatureSelector<coffeeReducers.CoffeesState>(coffeeReducers.featureKey);
 
 export const selectCoffees = createSelector(
-    selectCoffeesSliceState,
+  selectCoffeesSliceState,
   (state: coffeeReducers.CoffeesState) => state.coffees
 );

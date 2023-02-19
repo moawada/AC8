@@ -8,10 +8,8 @@ import { MaterialExampleModule } from './material.modulet';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { HeaderComponent } from './header/header.component';
 import { EffectsModule } from '@ngrx/effects';
-import { reducers, metaReducers } from './reducers';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
-import { coffeeReducer } from './coffee/coffee-list/coffee-list.reducer';
 
 
 @NgModule({
@@ -28,14 +26,6 @@ import { coffeeReducer } from './coffee/coffee-list/coffee-list.reducer';
     MaterialExampleModule,
     EffectsModule.forRoot([]),
     StoreModule.forRoot({}),
-
-    //StoreModule.forRoot({}, {}),
-    /*StoreModule.forRoot(reducers, {
-      metaReducers
-    }),*/
-    // StoreModule.forRoot({
-    //   coffeeList: coffeeReducer
-    // }),
   ],
 
   schemas: [

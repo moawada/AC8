@@ -39,5 +39,3 @@
     <tr mat-row *matRowDef="let coffee; columns: columnsToDisplay"
         [routerLink]="['/coffee/', coffee.id]">></tr>
 </table>
-
-<div *ngFor="let coffee of coffees$ | async "> {{ coffee.id }}</div>
