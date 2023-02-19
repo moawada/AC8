@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { ICoffeeInfo } from 'src/app/models/coffee.models';
-import { add_coffee } from './coffee-list.actions';
+import { add_coffee } from '../actions/coffee-list.actions';
 
 
 export interface CoffeesState {

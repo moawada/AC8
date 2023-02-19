@@ -1,12 +1,11 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, Subject, takeUntil } from 'rxjs';
-// import { AppState } from 'src/app/models/app-state.models';
 import { ICoffeeInfo } from 'src/app/models/coffee.models';
 import { CoffeeService } from 'src/app/services/coffee.service';
 import { __values } from 'tslib';
-import * as coffeesActions from './coffee-list.actions';
-import * as coffeeSelectors from './selector';
+import * as coffeesActions from '../../store/actions/coffee-list.actions';
+import * as coffeeSelectors from '../../store/selectors/selector';
 
 @Component({
   selector: 'app-coffee-list',
@@ -26,6 +25,11 @@ export class CoffeeListComponent implements OnInit {
     private store: Store<coffeeSelectors.AppState>
     ) {};
 
+  ngOnInit() {
+    this.coffees$ = this.store.select(coffeeSelectors.selectCoffees);
+    this.showCoffees();
+  }
+
   showCoffees() {
     const nCoffee = 10;
     for (let i = 0; i < nCoffee; i++){
@@ -35,12 +39,6 @@ export class CoffeeListComponent implements OnInit {
           this.store.dispatch(coffeesActions.add_coffee({coffee: data}));
       });
     }
-  }
-
-
-  ngOnInit() {
-    this.coffees$ = this.store.select(coffeeSelectors.selectCoffees);
-    this.showCoffees();
   }
 
   ngOnDestroy() {

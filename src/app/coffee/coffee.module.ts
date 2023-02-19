@@ -7,7 +7,7 @@ import { CoffeeListModule } from './coffee-list/coffee-list.module';
 import { CoffeeDetailsModule } from './coffee-details/coffee-details.module';
 import { MaterialExampleModule } from '../material.modulet';
 import { StoreModule } from '@ngrx/store';
-import * as coffeeReducers from './coffee-list/coffee-list.reducer';
+import * as coffeeReducers from '../store/reducers/coffee-list.reducer';
 
 
 @NgModule({

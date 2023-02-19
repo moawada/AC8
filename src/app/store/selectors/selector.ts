@@ -1,5 +1,5 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
-import * as coffeeReducers from "./coffee-list.reducer";
+import * as coffeeReducers from "../reducers/coffee-list.reducer";
 
 export interface AppState {
   coffeesSliceState: coffeeReducers.CoffeesState;
