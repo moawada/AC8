@@ -39,14 +39,10 @@ export class CoffeeListComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.coffees$ = this.store.select(coffeeSelectors.selectCoffees);
-    if (this.store.select(coffeeSelectors.countFetchedCoffees).subscribe((count) => {
-      count < 50}))
-      {
-      this.coffees$.subscribe((coffees) => {
-        this.dataSource.data = coffees;
-      })};
+    this.coffees$.subscribe((coffees) => {
+      this.dataSource.data = coffees;
+      });
     this.showCoffees();
-
   }
 
   ngAfterViewInit() {
@@ -54,16 +50,10 @@ export class CoffeeListComponent implements OnInit, AfterViewInit {
   }
 
   showCoffees() {
-    const nCoffee = 50;
-    for (let i = 0; i < nCoffee; i++){
-      this.coffeeService.getCoffee()
-      .pipe(takeUntil(this.ngUnsubscribe))
-        .subscribe((data: ICoffeeInfo) => {
-          this.store.dispatch(coffeesActions.add_coffee({coffee: data}));
-      });
-    }
+    this.store.dispatch(coffeesActions.get_coffee());
   }
-
+  //const nCoffee = 50;
+  //for (let i = 0; i < nCoffee; i++)
   ngOnDestroy() {
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();

@@ -10,6 +10,9 @@ import { HeaderComponent } from './header/header.component';
 import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { CoffeeListEffects } from './store/effects/coffee-list.effects';
+
 
 
 @NgModule({
@@ -24,8 +27,9 @@ import { StoreModule } from '@ngrx/store';
     BrowserAnimationsModule,
     HttpClientModule,
     MaterialExampleModule,
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([CoffeeListEffects]),
     StoreModule.forRoot({}),
+    StoreDevtoolsModule.instrument()
   ],
 
   schemas: [
