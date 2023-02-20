@@ -1,24 +1,40 @@
-<div>>
+<div>
     Today's item: {{ selectedCoffee.blend_name }}
-    ID:
+    <br>
+    ID:<br>
     {{selectedCoffee.id | number: '3.0-0'}}
-
-    UID:
+    <br>
+    UID:<br>
     {{selectedCoffee.uid}}
-
-    Blend name:
+    <br>
+    Blend name:<br>
     {{selectedCoffee.blend_name}}
-
-    Origin:
+    <br>
+    Origin:<br>
     {{selectedCoffee.origin}}
-
-    Variety:
+    <br>
+    Variety:<br>
     {{selectedCoffee.variety}}
-
-    Notes:
+    <br>
+    Notes:<br>
     {{selectedCoffee.notes}}
-
-    Intensifier
+    <br>
+    Intensifier:<br>
     {{selectedCoffee.intensifier}}
 
 </div>
+
+<!-- <mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+        <p>Auto-resizing sidenav</p>
+        <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
+        <button (click)="showFiller = !showFiller" mat-raised-button>
+        Toggle extra text
+        </button>
+    </mat-drawer>
+    <div class="example-sidenav-content">
+        <button type="button" mat-button (click)="drawer.toggle()">
+        Toggle sidenav
+        </button>
+    </div>
+</mat-drawer-container> -->

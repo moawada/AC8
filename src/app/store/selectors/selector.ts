@@ -15,6 +15,11 @@ export const selectCoffees =
     (state: coffeeReducers.CoffeesState) => state.coffees
   );
 
+export const countFetchedCoffees = createSelector(
+  selectCoffees,
+  (coffees) => coffees.length
+);
+
 export const getItemById = (id: number) => createSelector(
   selectCoffees, (allCoffees: Array<ICoffeeInfo>) : ICoffeeInfo | undefined => {
     if (allCoffees) {

@@ -1,43 +1,64 @@
 
 <div>
-<table class="coffee-list-table" mat-table [dataSource]="dataSource">
+    <mat-drawer-container class="details-container" autosize>
+            <table class="coffee-list-table" mat-table [dataSource]="dataSource">
 
-    <!-- Blend name Column -->
-    <ng-container matColumnDef="blend_name">
-        <th mat-header-cell *matHeaderCellDef> Blend name </th>
-        <td mat-cell *matCellDef="let coffee"> {{coffee.blend_name}} </td>
-    </ng-container>
+                <!-- Blend name Column -->
+                <ng-container matColumnDef="blend_name">
+                    <th mat-header-cell *matHeaderCellDef> Blend name </th>
+                    <td mat-cell *matCellDef="let coffee"> {{coffee.blend_name}} </td>
+                </ng-container>
 
-    <!-- Origin Column -->
-    <ng-container matColumnDef="origin">
-        <th mat-header-cell *matHeaderCellDef> Origin </th>
-        <td mat-cell *matCellDef="let coffee"> {{coffee.origin}} </td>
-    </ng-container>
+                <!-- Origin Column -->
+                <ng-container matColumnDef="origin">
+                    <th mat-header-cell *matHeaderCellDef> Origin </th>
+                    <td mat-cell *matCellDef="let coffee"> {{coffee.origin}} </td>
+                </ng-container>
 
-    <!-- Variety Column -->
-    <ng-container matColumnDef="variety">
-        <th mat-header-cell *matHeaderCellDef> Variety </th>
-        <td mat-cell *matCellDef="let coffee"> {{coffee.variety}} </td>
-    </ng-container>
+                <!-- Variety Column -->
+                <ng-container matColumnDef="variety">
+                    <th mat-header-cell *matHeaderCellDef> Variety </th>
+                    <td mat-cell *matCellDef="let coffee"> {{coffee.variety}} </td>
+                </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-    <tr mat-row
-        (click)="selectedCoffee = coffee"
-        [class.demo-row-is-clicked]="selectedCoffee == coffee"
-        *matRowDef="let coffee; columns: columnsToDisplay"
-        [routerLink]="['/coffee/', coffee.id]"
-        >
-    </tr>
-</table>
-
-<mat-paginator
-    [pageSize]= 10
-    [length]="50"
-    showFirstLastButtons
-    aria-label="Select page of periodic elements">
-</mat-paginator>
-
+                <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+                <tr mat-row
+                    button type="button" mat-button (click)="drawer.toggle()"
+                    (click)="selectedCoffee = coffee"
+                    [class.demo-row-is-clicked]="selectedCoffee == coffee"
+                    *matRowDef="let coffee; columns: columnsToDisplay"
+                    >
+                </tr>
+            </table>
+            <mat-drawer #drawer class="details-sidenav" mode="side">
+                <div *ngIf="selectedCoffee">
+                    {{ selectedCoffee.blend_name }}
+                    <br>
+                    ID: {{selectedCoffee.id | number: '3.0-0'}}
+                    <br>
+                    UID: {{selectedCoffee.uid}}
+                    <br>
+                    Blend name: {{selectedCoffee.blend_name}}
+                    <br>
+                    Origin:{{selectedCoffee.origin}}
+                    <br>
+                    Variety:{{selectedCoffee.variety}}
+                    <br>
+                    Notes:{{selectedCoffee.notes}}
+                    <br>
+                    Intensifier: {{selectedCoffee.intensifier}}
+                </div>
+            </mat-drawer>
+        <mat-paginator
+            [pageSize]= 10
+            [length]="50"
+            showFirstLastButtons
+            aria-label="Select page of periodic elements">
+        </mat-paginator>
+    </mat-drawer-container>
 </div>
+
+<!-- [routerLink]="['/coffee/', coffee.id]" -->
 
 <app-coffee-details
     *ngIf="selectedCoffee"

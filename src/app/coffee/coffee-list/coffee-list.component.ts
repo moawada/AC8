@@ -1,7 +1,8 @@
 import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { IconOptions } from '@angular/material/icon';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import { Observable, Subject, takeUntil } from 'rxjs';
 import { ICoffeeInfo } from 'src/app/models/coffee.models';
 import { CoffeeService } from 'src/app/services/coffee.service';
@@ -28,19 +29,24 @@ export class CoffeeListComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   public columnsToDisplay = ['blend_name', 'origin', 'variety'];
+  public  showFiller = false;
 
   constructor(
     private coffeeService: CoffeeService,
     cdRef: ChangeDetectorRef,
-    private store: Store<coffeeSelectors.AppState>
+    private store: Store<coffeeSelectors.AppState>,
     ) {};
 
   ngOnInit() {
     this.coffees$ = this.store.select(coffeeSelectors.selectCoffees);
-    this.coffees$.subscribe((coffees) => {
-      this.dataSource.data = coffees;
-  })
+    if (this.store.select(coffeeSelectors.countFetchedCoffees).subscribe((count) => {
+      count < 50}))
+      {
+      this.coffees$.subscribe((coffees) => {
+        this.dataSource.data = coffees;
+      })};
     this.showCoffees();
+
   }
 
   ngAfterViewInit() {
@@ -48,7 +54,7 @@ export class CoffeeListComponent implements OnInit, AfterViewInit {
   }
 
   showCoffees() {
-    const nCoffee = 10;
+    const nCoffee = 50;
     for (let i = 0; i < nCoffee; i++){
       this.coffeeService.getCoffee()
       .pipe(takeUntil(this.ngUnsubscribe))

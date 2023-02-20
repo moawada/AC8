@@ -1,20 +1,22 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { ICoffeeInfo } from 'src/app/models/coffee.models';
-import { add_coffee } from '../actions/coffee-list.actions';
+import * as coffeeActions from '../actions/coffee-list.actions';
 
 
 export interface CoffeesState {
     coffees: Array<ICoffeeInfo>;
+    count: number;
 };
 
 export const initialState : CoffeesState = {
-    coffees: []
+    coffees: [],
+    count: 0,
 };
 
 
 export const _coffeeReducer = createReducer(
     initialState,
-    on(add_coffee, (
+    on(coffeeActions.add_coffee, (
         state, { coffee }) => ({
             ...state,
             coffees: [...state.coffees, coffee ]

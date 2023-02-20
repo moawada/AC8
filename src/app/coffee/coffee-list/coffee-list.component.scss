@@ -13,3 +13,17 @@
     margin-left: 10px;
 }
 
+.details-container {
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.details-sidenav-content {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.details-sidenav {
+    padding: 20px;
+}
