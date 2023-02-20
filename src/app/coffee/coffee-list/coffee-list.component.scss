@@ -1,14 +1,15 @@
-.mat-row .mat-cell {
+.mat-mdc-row .mat-mdc-cell {
     border-bottom: 1px solid transparent;
     border-top: 1px solid transparent;
-    padding-right: 50px;
     cursor: pointer;
 }
 
-.coffee-list-table {
-margin-left: 10px;
+.mat-mdc-row:hover .mat-mdc-cell {
+    border-color: currentColor;
+    background-color: #FAEBD7;
 }
 
-.mat-row:hover .mat-cell {
-    border-color: currentColor;
+.coffee-list-table {
+    margin-left: 10px;
 }
+

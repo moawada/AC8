@@ -4,18 +4,20 @@ import { CommonModule } from '@angular/common';
 import { CoffeeListComponent } from './coffee-list.component';
 import { CoffeeRoutingModule } from '../coffee-routing.module';
 import { MatTableModule } from '@angular/material/table';
+import { CoffeeDetailsModule } from "./coffee-details/coffee-details.module";
 
 @NgModule({
-  declarations: [
-    CoffeeListComponent,
-  ],
-  imports: [
-    CommonModule,
-    CoffeeRoutingModule,
-    MatTableModule,
-  ],
-  exports: [
-    CoffeeListComponent
-  ]
+    declarations: [
+        CoffeeListComponent,
+    ],
+    exports: [
+        CoffeeListComponent
+    ],
+    imports: [
+        CommonModule,
+        CoffeeRoutingModule,
+        MatTableModule,
+        CoffeeDetailsModule
+    ]
 })
 export class CoffeeListModule { }

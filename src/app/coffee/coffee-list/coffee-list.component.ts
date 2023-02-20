@@ -1,4 +1,6 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { Title } from '@angular/platform-browser';
 import { Store } from '@ngrx/store';
 import { Observable, Subject, takeUntil } from 'rxjs';
 import { ICoffeeInfo } from 'src/app/models/coffee.models';
@@ -7,17 +9,26 @@ import { __values } from 'tslib';
 import * as coffeesActions from '../../store/actions/coffee-list.actions';
 import * as coffeeSelectors from '../../store/selectors/selector';
 
+
 @Component({
   selector: 'app-coffee-list',
   templateUrl: './coffee-list.component.html',
   styleUrls: ['./coffee-list.component.scss']
 })
+
+
 export class CoffeeListComponent implements OnInit {
+
 
   private ngUnsubscribe = new Subject<void>();
   public coffees$: Observable<ICoffeeInfo[]>;
+  public selectedCoffee: ICoffeeInfo;
 
-  public columnsToDisplay = ['id', 'uid', 'blend_name', 'origin', 'variety', 'notes', 'intensifier'];
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
+
+  public columnsToDisplay = ['blend_name', 'origin', 'variety'];
 
   constructor(
     private coffeeService: CoffeeService,

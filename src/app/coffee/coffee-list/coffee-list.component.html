@@ -1,41 +1,37 @@
 <table class="coffee-list-table" mat-table [dataSource]="coffees$">
 
-    <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef> ID </th>
-        <td mat-cell *matCellDef="let coffee"> {{coffee.id | number: '3.0-0'}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="uid">
-        <th mat-header-cell *matHeaderCellDef> UID </th>
-        <td mat-cell *matCellDef="let coffee"> {{coffee.uid}} </td>
-    </ng-container>
-
+    <!-- Blend name Column -->
     <ng-container matColumnDef="blend_name">
         <th mat-header-cell *matHeaderCellDef> Blend name </th>
         <td mat-cell *matCellDef="let coffee"> {{coffee.blend_name}} </td>
     </ng-container>
 
+    <!-- Origin Column -->
     <ng-container matColumnDef="origin">
-        <th mat-header-cell *matHeaderCellDef> origin </th>
+        <th mat-header-cell *matHeaderCellDef> Origin </th>
         <td mat-cell *matCellDef="let coffee"> {{coffee.origin}} </td>
     </ng-container>
 
+    <!-- Variety Column -->
     <ng-container matColumnDef="variety">
-        <th mat-header-cell *matHeaderCellDef> variety </th>
+        <th mat-header-cell *matHeaderCellDef> Variety </th>
         <td mat-cell *matCellDef="let coffee"> {{coffee.variety}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="notes">
-        <th mat-header-cell *matHeaderCellDef> notes </th>
-        <td mat-cell *matCellDef="let coffee"> {{coffee.notes}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="intensifier">
-        <th mat-header-cell *matHeaderCellDef> intensifier </th>
-        <td mat-cell *matCellDef="let coffee"> {{coffee.intensifier}} </td>
-    </ng-container>
-
     <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-    <tr mat-row *matRowDef="let coffee; columns: columnsToDisplay"
-        [routerLink]="['/coffee/', coffee.id]">></tr>
+    <tr mat-row
+        (click)="selectedCoffee = coffee"
+        [class.demo-row-is-clicked]="selectedCoffee == coffee"
+        *matRowDef="let coffee; columns: columnsToDisplay"
+        [routerLink]="['/coffee/', coffee.id]"
+        >
+    </tr>
 </table>
+<!-- [routerLink]="['/coffee/', coffee.id]"  -->
+
+<app-coffee-details
+    *ngIf="selectedCoffee"
+    [selectedCoffee]="selectedCoffee">
+</app-coffee-details>
+
+<!-- <app-coffee-details [clickCoffee]="selectedCoffees"></app-coffee-details> -->
