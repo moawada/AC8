@@ -1,11 +1,10 @@
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { Title } from '@angular/platform-browser';
+import { MatTableDataSource } from '@angular/material/table';
 import { Store } from '@ngrx/store';
 import { Observable, Subject, takeUntil } from 'rxjs';
 import { ICoffeeInfo } from 'src/app/models/coffee.models';
 import { CoffeeService } from 'src/app/services/coffee.service';
-import { __values } from 'tslib';
 import * as coffeesActions from '../../store/actions/coffee-list.actions';
 import * as coffeeSelectors from '../../store/selectors/selector';
 
@@ -17,16 +16,16 @@ import * as coffeeSelectors from '../../store/selectors/selector';
 })
 
 
-export class CoffeeListComponent implements OnInit {
+export class CoffeeListComponent implements OnInit, AfterViewInit {
 
 
   private ngUnsubscribe = new Subject<void>();
   public coffees$: Observable<ICoffeeInfo[]>;
   public selectedCoffee: ICoffeeInfo;
 
+  dataSource = new MatTableDataSource<ICoffeeInfo>();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
-
 
   public columnsToDisplay = ['blend_name', 'origin', 'variety'];
 
@@ -38,7 +37,14 @@ export class CoffeeListComponent implements OnInit {
 
   ngOnInit() {
     this.coffees$ = this.store.select(coffeeSelectors.selectCoffees);
+    this.coffees$.subscribe((coffees) => {
+      this.dataSource.data = coffees;
+  })
     this.showCoffees();
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
   }
 
   showCoffees() {

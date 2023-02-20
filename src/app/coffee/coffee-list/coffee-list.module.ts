@@ -5,6 +5,7 @@ import { CoffeeListComponent } from './coffee-list.component';
 import { CoffeeRoutingModule } from '../coffee-routing.module';
 import { MatTableModule } from '@angular/material/table';
 import { CoffeeDetailsModule } from "./coffee-details/coffee-details.module";
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
     declarations: [
@@ -17,6 +18,7 @@ import { CoffeeDetailsModule } from "./coffee-details/coffee-details.module";
         CommonModule,
         CoffeeRoutingModule,
         MatTableModule,
+        MatPaginatorModule,
         CoffeeDetailsModule
     ]
 })

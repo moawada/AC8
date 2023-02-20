@@ -1,4 +1,6 @@
-<table class="coffee-list-table" mat-table [dataSource]="coffees$">
+
+<div>
+<table class="coffee-list-table" mat-table [dataSource]="dataSource">
 
     <!-- Blend name Column -->
     <ng-container matColumnDef="blend_name">
@@ -27,11 +29,17 @@
         >
     </tr>
 </table>
-<!-- [routerLink]="['/coffee/', coffee.id]"  -->
+
+<mat-paginator
+    [pageSize]= 10
+    [length]="50"
+    showFirstLastButtons
+    aria-label="Select page of periodic elements">
+</mat-paginator>
+
+</div>
 
 <app-coffee-details
     *ngIf="selectedCoffee"
     [selectedCoffee]="selectedCoffee">
 </app-coffee-details>
-
-<!-- <app-coffee-details [clickCoffee]="selectedCoffees"></app-coffee-details> -->
