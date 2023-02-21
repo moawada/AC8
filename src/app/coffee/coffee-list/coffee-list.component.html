@@ -22,21 +22,36 @@
             </table>
             <mat-drawer #drawer class="details-sidenav" mode="side">
                 <div *ngIf="selectedCoffee">
-                    {{ selectedCoffee.blend_name }}
-                    <br>
-                    ID: {{selectedCoffee.id | number: '3.0-0'}}
-                    <br>
-                    UID: {{selectedCoffee.uid}}
-                    <br>
-                    Blend name: {{selectedCoffee.blend_name}}
-                    <br>
-                    Origin:{{selectedCoffee.origin}}
-                    <br>
-                    Variety:{{selectedCoffee.variety}}
-                    <br>
-                    Notes:{{selectedCoffee.notes}}
-                    <br>
-                    Intensifier: {{selectedCoffee.intensifier}}
+                    <table class="details" style="width:100%">
+                        <tr>
+                          <td>ID:</td>
+                          <td>{{selectedCoffee.id | number: '3.0-0'}}</td>
+                        </tr>
+                        <tr>
+                          <td>UID:</td>
+                          <td>{{selectedCoffee.uid}}</td>
+                        </tr>
+                        <tr>
+                          <td>Blend name:</td>
+                          <td>{{selectedCoffee.blend_name}}</td>
+                        </tr>
+                        <tr>
+                          <td>Origin:</td>
+                          <td>{{selectedCoffee.origin }}</td>
+                        </tr>
+                        <tr>
+                          <td>Variety:</td>
+                          <td>{{selectedCoffee.variety}}</td>
+                        </tr>
+                        <tr>
+                          <td>Notes:</td>
+                          <td>{{selectedCoffee.notes}}</td>
+                        </tr>
+                        <tr>
+                          <td>Intensifier:</td>
+                          <td>{{selectedCoffee.intensifier}}</td>
+                        </tr>
+                    </table>
                 </div>
             </mat-drawer>
         <mat-paginator
