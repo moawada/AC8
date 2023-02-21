@@ -2,12 +2,24 @@
     margin-left: 1em
 }
 
+.title {
+    cursor: pointer;
+    width: 5%;
+    background: #3f51b5;
+    color:#FFC107;
+    font-size: 18px;
+}
+
+.splitter {
+    width: 85%;
+}
+
 .header .mat-toolbar {
     position: relative;
-    margin: 5px;
     background: #3f51b5;
 
     .header-button {
+        margin-left: 5px;
         color: #FFFFFF;
         font-size: 16px;
         font-weight: 600;
