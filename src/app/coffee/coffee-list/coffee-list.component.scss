@@ -21,11 +21,16 @@
     border: 1px solid rgba(0, 0, 0, 0.5);
 }
 
+:host ::ng-deep .mat-drawer-content {
+    overflow: hidden;
+}
+
 .details-sidenav-content {
     display: flex;
     height: 100%;
     align-items: center;
     justify-content: center;
+
 }
 
 .details-sidenav {
@@ -41,7 +46,3 @@
     font-style: italic;
     font-size: 16px;
 }
-
-// .filler span{
-//     margin-top: 40px;
-// }
