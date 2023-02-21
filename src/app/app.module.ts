@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -27,9 +27,10 @@ import { CoffeeListEffects } from './store/effects/coffee-list.effects';
     BrowserAnimationsModule,
     HttpClientModule,
     MaterialExampleModule,
-    EffectsModule.forRoot([CoffeeListEffects]),
+    EffectsModule.forRoot([CoffeeListEffects, ]),
     StoreModule.forRoot({}),
-    StoreDevtoolsModule.instrument()
+    StoreDevtoolsModule.instrument(),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
   ],
 
   schemas: [

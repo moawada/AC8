@@ -25,8 +25,6 @@ export const _coffeeReducer = createReducer(
       state, { coffee }) => {
         return {
           ...state,
-          //Increment coffee counter on each get_coffee_success
-          // count: state.count + 1,
           coffees: [...state.coffees, coffee ]
         }
       }

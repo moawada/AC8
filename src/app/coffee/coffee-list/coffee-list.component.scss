@@ -13,6 +13,10 @@
     margin-left: 10px;
 }
 
+.mdc-data-table__header-cell {
+    font-weight: 800;
+}
+
 .details-container {
     border: 1px solid rgba(0, 0, 0, 0.5);
 }
@@ -26,4 +30,18 @@
 
 .details-sidenav {
     padding: 20px;
+    max-width: 300px;
 }
+
+.filler {
+    height: 50px;
+    background-color: #FAEBD7;
+    padding-top: 50px;
+    text-align: center;
+    font-style: italic;
+    font-size: 16px;
+}
+
+// .filler span{
+//     margin-top: 40px;
+// }

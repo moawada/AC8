@@ -19,7 +19,6 @@ import * as coffeeSelectors from '../../store/selectors/selector';
 
 export class CoffeeListComponent implements OnInit, AfterViewInit {
 
-
   private ngUnsubscribe = new Subject<void>();
   public coffees$: Observable<ICoffeeInfo[]>;
   public selectedCoffee: ICoffeeInfo;
@@ -28,12 +27,10 @@ export class CoffeeListComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  public columnsToDisplay = ['blend_name', 'origin', 'variety'];
+  public columnsToDisplay = ['blend_name'];
   public  showFiller = false;
 
   constructor(
-    private coffeeService: CoffeeService,
-    cdRef: ChangeDetectorRef,
     private store: Store<coffeeSelectors.AppState>,
     ) {};
 
@@ -41,19 +38,16 @@ export class CoffeeListComponent implements OnInit, AfterViewInit {
     this.coffees$ = this.store.select(coffeeSelectors.selectCoffees);
     this.coffees$.subscribe((coffees) => {
       this.dataSource.data = coffees;
-      });
-    this.showCoffees();
+      if (coffees.length < 50){
+        this.store.dispatch(coffeesActions.get_coffee());
+      }
+    });
   }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
 
-  showCoffees() {
-    this.store.dispatch(coffeesActions.get_coffee());
-  }
-  //const nCoffee = 50;
-  //for (let i = 0; i < nCoffee; i++)
   ngOnDestroy() {
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();

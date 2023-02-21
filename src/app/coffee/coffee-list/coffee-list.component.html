@@ -1,5 +1,6 @@
 
 <div>
+    <div class="filler"><span>Coffee Menu</span></div>
     <mat-drawer-container class="details-container" autosize>
             <table class="coffee-list-table" mat-table [dataSource]="dataSource">
 
@@ -9,24 +10,13 @@
                     <td mat-cell *matCellDef="let coffee"> {{coffee.blend_name}} </td>
                 </ng-container>
 
-                <!-- Origin Column -->
-                <ng-container matColumnDef="origin">
-                    <th mat-header-cell *matHeaderCellDef> Origin </th>
-                    <td mat-cell *matCellDef="let coffee"> {{coffee.origin}} </td>
-                </ng-container>
-
-                <!-- Variety Column -->
-                <ng-container matColumnDef="variety">
-                    <th mat-header-cell *matHeaderCellDef> Variety </th>
-                    <td mat-cell *matCellDef="let coffee"> {{coffee.variety}} </td>
-                </ng-container>
-
                 <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
                 <tr mat-row
                     button type="button" mat-button (click)="drawer.toggle()"
                     (click)="selectedCoffee = coffee"
                     [class.demo-row-is-clicked]="selectedCoffee == coffee"
                     *matRowDef="let coffee; columns: columnsToDisplay"
+                    [routerLink]="['/coffee/', coffee.id]"
                     >
                 </tr>
             </table>
@@ -58,9 +48,8 @@
     </mat-drawer-container>
 </div>
 
-<!-- [routerLink]="['/coffee/', coffee.id]" -->
-
-<app-coffee-details
+<router-outlet></router-outlet>
+<!-- <app-coffee-details
     *ngIf="selectedCoffee"
     [selectedCoffee]="selectedCoffee">
-</app-coffee-details>
+</app-coffee-details> -->

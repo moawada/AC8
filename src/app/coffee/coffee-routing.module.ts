@@ -7,12 +7,8 @@ import { CoffeeComponent } from './coffee.component';
 const routes: Routes = [
   {
     path: '',
-    component: CoffeeComponent,
+    component: CoffeeListComponent,
     children: [
-      {
-        path: '',
-        component: CoffeeListComponent
-      },
       {
         path: ':id',
         component: CoffeeDetailsComponent
