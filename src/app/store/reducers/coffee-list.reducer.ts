@@ -5,31 +5,23 @@ import * as coffeeActions from '../actions/coffee-list.actions';
 
 export interface CoffeesState {
     coffees: Array<ICoffeeInfo>;
-    count: number;
 };
 
 export const initialState : CoffeesState = {
     coffees: [],
-    count: 0,
 };
 
 export const _coffeeReducer = createReducer(
     initialState,
-    on(coffeeActions.add_coffee, (
-      state, { coffee }) => ({
-          ...state,
-          coffees: [...state.coffees, coffee ]
-      })
-    ),
-    on(coffeeActions.get_coffee_success, (
-      state, { coffee }) => {
+    on(coffeeActions.get_coffees_success, (
+      state, { coffees }) => {
         return {
           ...state,
-          coffees: [...state.coffees, coffee ]
+          coffees:  coffees
         }
       }
     ),
-    on(coffeeActions.get_coffee_failure, (
+    on(coffeeActions.get_coffees_failure, (
       state, { payload }) => {
         return {
           ...initialState

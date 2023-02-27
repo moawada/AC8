@@ -2,6 +2,7 @@ import { createSelector, createFeatureSelector } from '@ngrx/store';
 import { ICoffeeInfo } from 'src/app/models/coffee.models';
 import * as coffeeReducers from "../reducers/coffee-list.reducer";
 
+
 export interface AppState {
   coffeesSliceState: coffeeReducers.CoffeesState;
 }
@@ -14,11 +15,6 @@ export const selectCoffees =
     selectCoffeesSliceState,
     (state: coffeeReducers.CoffeesState) => state.coffees
   );
-
-export const countFetchedCoffees = createSelector(
-  selectCoffees,
-  (coffees) => coffees.length
-);
 
 export const getItemById = (id: number) => createSelector(
   selectCoffees, (allCoffees: Array<ICoffeeInfo>) : ICoffeeInfo | undefined => {

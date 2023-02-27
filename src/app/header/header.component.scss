@@ -1,27 +1,33 @@
 .menu-button-spacer {
-    margin-left: 1em
+  margin-left: 1em
 }
 
 .title {
-    cursor: pointer;
-    width: 5%;
-    background: #41bdad;
-    color:#FFC107;
-    font-size: 20px;
+  cursor: pointer;
+  background: #41bdad;
+  color:#FFFFFF;
+  font-size: 20px;
+  text-decoration: none;
+
+  *{
+    display: inline-block;
+    vertical-align: top;
+    padding: 0 5px;
+  }
 }
 
 .splitter {
-    width: 85%;
+  width: 85%;
 }
 
 .header .mat-toolbar {
-    position: relative;
-    background: #41bdad;
+  position: relative;
+  background: #41bdad;
 
-    .header-button {
-        margin-left: 5px;
-        color: #FFFFFF;
-        font-size: 16px;
-        font-weight: 600;
-    }
+  .header-button {
+      margin-left: 5px;
+      color: #FFFFFF;
+      font-size: 16px;
+      font-weight: 600;
+  }
 }

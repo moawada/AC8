@@ -13,10 +13,10 @@ export class CoffeeListEffects {
   ) {}
 
   loadCoffee$ = createEffect (() =>
-    this.actions$.pipe(ofType(coffeeActions.get_coffee),
+    this.actions$.pipe(ofType(coffeeActions.get_coffees),
     mergeMap(() => this.coffeeService.getCoffee()
-      .pipe(map(coffee => coffeeActions.get_coffee_success({coffee})),
-        catchError(error => of(coffeeActions.get_coffee_failure({payload: error})))
+      .pipe(map(coffees => coffeeActions.get_coffees_success({coffees})),
+        catchError(error => of(coffeeActions.get_coffees_failure({payload: error})))
       ))
     )
   )

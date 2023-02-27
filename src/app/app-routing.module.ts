@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+
 const routes: Routes = [
   {
     path: '',
@@ -17,15 +18,6 @@ const routes: Routes = [
     loadChildren: () =>
       import('./coffee/coffee.module').then(m => m.CoffeeModule)
   },
-  // {
-  //   path: 'coffee-list',
-  //   loadChildren: () =>
-  //     import('./coffee/coffee-list/coffee-list.module').then(m => m.CoffeeListModule)
-  // },
-  // { path: 'coffee-details',
-  //   loadChildren: () =>
-  //     import('./coffee/coffee-details/coffee-details.module').then(m => m.CoffeeDetailsModule)
-  // },
 
 ];
 

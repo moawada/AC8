@@ -10,9 +10,9 @@ export class CoffeeService {
 
   constructor( private http: HttpClient) {}
 
-  coffeeAPI = 'https://random-data-api.com/api/coffee/random_coffee';
+  coffeeAPI = 'https://random-data-api.com/api/coffee/random_coffee?size=50';
 
   getCoffee() {
-    return this.http.get<ICoffeeInfo>(this.coffeeAPI)
+    return this.http.get<ICoffeeInfo[]>(this.coffeeAPI)
   }
 }

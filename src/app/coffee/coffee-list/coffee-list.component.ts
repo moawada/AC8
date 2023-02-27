@@ -1,11 +1,9 @@
 import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
-import { IconOptions } from '@angular/material/icon';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { select, Store } from '@ngrx/store';
-import { Observable, Subject, takeUntil } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { Observable, Subject } from 'rxjs';
 import { ICoffeeInfo } from 'src/app/models/coffee.models';
-import { CoffeeService } from 'src/app/services/coffee.service';
 import * as coffeesActions from '../../store/actions/coffee-list.actions';
 import * as coffeeSelectors from '../../store/selectors/selector';
 
@@ -38,8 +36,8 @@ export class CoffeeListComponent implements OnInit, AfterViewInit {
     this.coffees$ = this.store.select(coffeeSelectors.selectCoffees);
     this.coffees$.subscribe((coffees) => {
       this.dataSource.data = coffees;
-      if (coffees.length < 50){
-        this.store.dispatch(coffeesActions.get_coffee());
+      if (!coffees.length){
+        this.store.dispatch(coffeesActions.get_coffees());
       }
     });
   }
