@@ -30,7 +30,6 @@ export class CoffeeDetailsComponent implements OnInit {
       let id = parseInt(paramMap.get("id") || "");
       this.store.select(coffeeSelectors.getItemById(id))
         .subscribe((item) => {
-          console.log("item: ",item);
           if (item) {
             this.selectedCoffee = item;
           }
