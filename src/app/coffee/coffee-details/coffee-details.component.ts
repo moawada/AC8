@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { ICoffeeInfo } from 'src/app/models/coffee.models';
 import * as coffeeSelectors from 'src/app/store/selectors/selector';
@@ -21,6 +21,7 @@ export class CoffeeDetailsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private store: Store<coffeeSelectors.AppState>
   ) {}
 
@@ -29,11 +30,14 @@ export class CoffeeDetailsComponent implements OnInit {
       let id = parseInt(paramMap.get("id") || "");
       this.store.select(coffeeSelectors.getItemById(id))
         .subscribe((item) => {
+          console.log("item: ",item);
           if (item) {
             this.selectedCoffee = item;
           }
+          else {
+            this.router.navigate(["404"]);
+          }
         });
     });
-    // console.log("this.selectedCoffees in child", this.selectedCoffee);
   }
 }
