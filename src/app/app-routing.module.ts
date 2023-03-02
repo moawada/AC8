@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { PageNotFoundComponent } from './coffee/coffee-list/coffee-details/page-not-found/page-not-found.component';
 
 
 const routes: Routes = [
@@ -18,6 +19,9 @@ const routes: Routes = [
     loadChildren: () =>
       import('./coffee/coffee.module').then(m => m.CoffeeModule)
   },
+  {
+    path: '**', component: PageNotFoundComponent
+  }
 
 ];
 

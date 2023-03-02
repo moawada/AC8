@@ -18,7 +18,7 @@ import { CoffeeListEffects } from './store/effects/coffee-list.effects';
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
+    HeaderComponent
   ],
 
   imports: [
@@ -27,7 +27,7 @@ import { CoffeeListEffects } from './store/effects/coffee-list.effects';
     BrowserAnimationsModule,
     HttpClientModule,
     MaterialExampleModule,
-    EffectsModule.forRoot([CoffeeListEffects, ]),
+    EffectsModule.forRoot([CoffeeListEffects]),
     StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument(),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
