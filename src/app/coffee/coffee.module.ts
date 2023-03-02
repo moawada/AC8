@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 
 import { CoffeeRoutingModule } from './coffee-routing.module';
 import { CoffeeComponent } from './coffee.component';
-import { CoffeeListModule } from './coffee-list/coffee-list.module';
-import { CoffeeDetailsModule } from './coffee-list/coffee-details/coffee-details.module';
+import { CoffeeDetailsModule } from './coffee-details/coffee-details.module';
 import { MaterialExampleModule } from '../material.modulet';
 import { StoreModule } from '@ngrx/store';
 import * as coffeeReducers from '../store/reducers/coffee-list.reducer';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
 
 
 @NgModule({
@@ -17,8 +18,9 @@ import * as coffeeReducers from '../store/reducers/coffee-list.reducer';
   imports: [
     CommonModule,
     CoffeeRoutingModule,
-    CoffeeListModule,
     CoffeeDetailsModule,
+    MatPaginatorModule,
+    MatTableModule,
     MaterialExampleModule,
     StoreModule.forFeature(coffeeReducers.featureKey, coffeeReducers.coffeeReducer)
   ]

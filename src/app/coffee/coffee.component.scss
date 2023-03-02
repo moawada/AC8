@@ -1,0 +1,50 @@
+.mat-mdc-row .mat-mdc-cell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+  cursor: pointer;
+}
+
+.mat-mdc-row:hover .mat-mdc-cell {
+  border-color: currentColor;
+  background-color: #FAEBD7;
+}
+
+.mdc-data-table__header-cell {
+  font-weight: 800;
+}
+
+.details-container {
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+:host ::ng-deep .mat-drawer-content {
+  overflow: hidden;
+}
+
+.details-sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.details-sidenav {
+  padding: 20px;
+  max-width: 300px;
+}
+
+.filler {
+  height: 70px;
+  background-color: #f3f3f3;
+  padding-top: 50px;
+  text-align: center;
+  font-family: Garamond;
+  font-style: italic;
+  font-size: 33px;
+}
+
+.details {
+  td:first-child {
+      font-weight: 800;
+  }
+}
