@@ -14,46 +14,14 @@
       <tr mat-row
           button type="button"
           mat-button
-          (click)="drawer.toggle()"
-          (click)="selectedCoffee = coffee"
-          [class.demo-row-is-clicked]="selectedCoffee == coffee"
-          *matRowDef="let coffee; columns: columnsToDisplay"
-          [routerLink]="['/coffee/', coffee.id]">
+          (click)="showSelectedCoffee(coffee.id)"
+          [class.demo-row-is-clicked]="selectedCoffeeId == coffee.id"
+          *matRowDef="let coffee; columns: columnsToDisplay">
+          <!-- [routerLink]="['/coffee/', coffee.id]" -->
       </tr>
     </table>
     <mat-drawer #drawer class="details-sidenav" mode="side">
-      <div *ngIf="selectedCoffee">
-        <table class="details" style="width:100%">
-          <tr>
-            <td>ID:</td>
-            <td>{{selectedCoffee.id | number: '3.0-0'}}</td>
-          </tr>
-          <tr>
-            <td>UID:</td>
-            <td>{{selectedCoffee.uid}}</td>
-          </tr>
-          <tr>
-            <td>Blend name:</td>
-            <td>{{selectedCoffee.blend_name}}</td>
-          </tr>
-          <tr>
-            <td>Origin:</td>
-            <td>{{selectedCoffee.origin }}</td>
-          </tr>
-          <tr>
-            <td>Variety:</td>
-            <td>{{selectedCoffee.variety}}</td>
-          </tr>
-          <tr>
-            <td>Notes:</td>
-            <td>{{selectedCoffee.notes}}</td>
-          </tr>
-          <tr>
-            <td>Intensifier:</td>
-            <td>{{selectedCoffee.intensifier}}</td>
-          </tr>
-        </table>
-      </div>
+      <app-coffee-details [selectedCoffeeId]="selectedCoffeeId"></app-coffee-details>
     </mat-drawer>
     <mat-paginator
         [pageSize]= 10
@@ -64,4 +32,3 @@
   </mat-drawer-container>
 </div>
 
-<router-outlet></router-outlet>

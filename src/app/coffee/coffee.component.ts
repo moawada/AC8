@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatDrawer } from '@angular/material/sidenav';
 import { MatTableDataSource } from '@angular/material/table';
 import { Store } from '@ngrx/store';
 import { Observable, Subject } from 'rxjs';
@@ -19,14 +20,15 @@ export class CoffeeComponent implements OnInit, AfterViewInit {
 
   private ngUnsubscribe = new Subject<void>();
   public coffees$: Observable<ICoffeeInfo[]>;
-  public selectedCoffee: ICoffeeInfo;
+  public selectedCoffeeId: number;
+  public columnsToDisplay = ['blend_name'];
 
-  dataSource = new MatTableDataSource<ICoffeeInfo>();
+
+  public dataSource = new MatTableDataSource<ICoffeeInfo>();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatDrawer) matDrawer: MatDrawer;
 
-  public columnsToDisplay = ['blend_name'];
-  public  showFiller = false;
 
   constructor(
     private store: Store<coffeeSelectors.AppState>,
@@ -40,6 +42,11 @@ export class CoffeeComponent implements OnInit, AfterViewInit {
         this.store.dispatch(coffeesActions.get_coffees());
       }
     });
+  }
+
+  showSelectedCoffee(coffeeId: number) {
+    this.selectedCoffeeId = coffeeId;
+    this.matDrawer.toggle();
   }
 
   ngAfterViewInit() {

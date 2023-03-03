@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { ICoffeeInfo } from 'src/app/models/coffee.models';
 import * as coffeeSelectors from 'src/app/store/selectors/selector';
@@ -15,28 +14,27 @@ import * as coffeeSelectors from 'src/app/store/selectors/selector';
 export class CoffeeDetailsComponent implements OnInit {
 
   public columnsToDisplay = ['id', 'uid', 'blend_name', 'origin', 'variety', 'notes', 'intensifier'];
-  public showFiller = false;
+  public selectedCoffee : ICoffeeInfo;
 
-  @Input() selectedCoffee : ICoffeeInfo;
+
+  @Input() set selectedCoffeeId(idVal: number) {
+    this.setCoffeeDetails(idVal);
+  }
 
   constructor(
-    private route: ActivatedRoute,
-    private router: Router,
     private store: Store<coffeeSelectors.AppState>
   ) {}
 
-  ngOnInit() {
-    this.route.paramMap.subscribe( paramMap => {
-      let id = parseInt(paramMap.get("id") || "");
+  ngOnInit() {}
+
+  setCoffeeDetails(id: number) {
+    if (id) {
       this.store.select(coffeeSelectors.getItemById(id))
-        .subscribe((item) => {
-          if (item) {
-            this.selectedCoffee = item;
-          }
-          else {
-            this.router.navigate(["404"]);
-          }
-        });
-    });
+      .subscribe((item) => {
+        if (item) {
+          this.selectedCoffee = item;
+        }
+      })
+    }
   }
-}
+  }
