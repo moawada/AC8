@@ -1,9 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatDrawer, MatSidenavModule } from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideMockStore } from '@ngrx/store/testing';
+import { CoffeeDetailsComponent } from './coffee-details/coffee-details.component';
 import { CoffeeRoutingModule } from './coffee-routing.module';
 
 import { CoffeeComponent } from './coffee.component';
@@ -15,7 +16,12 @@ describe('CoffeeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CoffeeComponent ],
+
+      declarations: [
+        CoffeeComponent,
+        CoffeeDetailsComponent
+      ],
+
       imports: [
         BrowserAnimationsModule,
         CoffeeRoutingModule,
@@ -24,7 +30,10 @@ describe('CoffeeComponent', () => {
         MatSidenavModule,
       ],
 
-      providers: [provideMockStore({})],
+      providers: [
+        provideMockStore({}),
+        MatDrawer
+      ],
     })
     .compileComponents();
 
@@ -35,5 +44,15 @@ describe('CoffeeComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should toggle the matDrawer and set selectedCoffeeId', () => {
+    const coffeeId = 123;
+    spyOn(component.matDrawer, 'toggle');
+
+    component.showSelectedCoffee(coffeeId);
+
+    expect(component.selectedCoffeeId).toEqual(coffeeId);
+    expect(component.matDrawer.toggle).toHaveBeenCalled();
   });
 });

@@ -17,7 +17,6 @@
           (click)="showSelectedCoffee(coffee.id)"
           [class.demo-row-is-clicked]="selectedCoffeeId == coffee.id"
           *matRowDef="let coffee; columns: columnsToDisplay">
-          <!-- [routerLink]="['/coffee/', coffee.id]" -->
       </tr>
     </table>
     <mat-drawer #drawer class="details-sidenav" mode="side">

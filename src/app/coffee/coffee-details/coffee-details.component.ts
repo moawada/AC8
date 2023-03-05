@@ -37,4 +37,4 @@ export class CoffeeDetailsComponent implements OnInit {
       })
     }
   }
-  }
+}
