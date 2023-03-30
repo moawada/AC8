@@ -19,7 +19,7 @@ describe('_coffeeReducer', () => {
       {
         id: 1,
         uid: '001',
-        blend_name: 'Blend 1',
+        blendName: 'Blend 1',
         origin: 'Colombia',
         variety: 'Arabica',
         notes: 'Fruity, Chocolatey',
@@ -28,7 +28,7 @@ describe('_coffeeReducer', () => {
       {
         id: 2,
         uid: '002',
-        blend_name: 'Blend 2',
+        blendName: 'Blend 2',
         origin: 'Ethiopia',
         variety: 'Sidamo',
         notes: 'Floral, Fruity',

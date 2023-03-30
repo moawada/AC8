@@ -13,7 +13,7 @@ import * as coffeeSelectors from 'src/app/store/selectors/selector';
 
 export class CoffeeDetailsComponent implements OnInit {
 
-  public columnsToDisplay = ['id', 'uid', 'blend_name', 'origin', 'variety', 'notes', 'intensifier'];
+  public columnsToDisplay = ['id', 'uid', 'blendName', 'origin', 'variety', 'notes', 'intensifier'];
   public selectedCoffee : ICoffeeInfo;
 
 

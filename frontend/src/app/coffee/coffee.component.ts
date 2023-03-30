@@ -21,7 +21,7 @@ export class CoffeeComponent implements OnInit, AfterViewInit {
   private ngUnsubscribe = new Subject<void>();
   public coffees$: Observable<ICoffeeInfo[]>;
   public selectedCoffeeId: number;
-  public columnsToDisplay = ['blend_name'];
+  public columnsToDisplay = ['blendName'];
 
 
   public dataSource = new MatTableDataSource<ICoffeeInfo>();

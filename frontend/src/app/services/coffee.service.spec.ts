@@ -31,7 +31,7 @@ describe('CoffeeService', () => {
       {
         id: 1,
         uid: '001',
-        blend_name: 'Test 1',
+        blendName: 'Test 1',
         origin: 'Test Origin',
         variety: 'Test Variety',
         notes: 'Test Notes',
