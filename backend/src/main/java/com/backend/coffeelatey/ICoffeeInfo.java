@@ -1,4 +1,4 @@
-package com.coffeelatey.coffeelateywebapp;
+package com.backend.coffeelatey;
 
 public class ICoffeeInfo {
     private short id;

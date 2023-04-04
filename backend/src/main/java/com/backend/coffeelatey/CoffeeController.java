@@ -1,4 +1,4 @@
-package com.coffeelatey.coffeelateywebapp;
+package com.backend.coffeelatey;
 
 import java.util.ArrayList;
 import java.util.List;

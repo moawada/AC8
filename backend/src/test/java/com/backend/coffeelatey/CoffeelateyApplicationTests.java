@@ -1,10 +1,10 @@
-package com.coffeelatey.coffeelateywebapp;
+package com.backend.coffeelatey;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CoffeelateyWebappApplicationTests {
+class CoffeelateyApplicationTests {
 
 	@Test
 	void contextLoads() {
