@@ -1,0 +1,25 @@
+<table class="my-coffees" border="1">
+    <caption> My coffees </caption>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>UID</th>
+            <th>Blend Name</th>
+            <th>Origin</th>
+            <th>Variety</th>
+            <th>Notes</th>
+            <th>Intensifier</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let coffee of myCoffees">
+            <td>{{coffee.id}}</td>
+            <td>{{coffee.uid}}</td>
+            <td>{{coffee.blendName}}</td>
+            <td>{{coffee.origin}}</td>
+            <td>{{coffee.variety}}</td>
+            <td>{{coffee.notes}}</td>
+            <td>{{coffee.intensifier}}</td>
+        </tr>
+    </tbody>
+</table>

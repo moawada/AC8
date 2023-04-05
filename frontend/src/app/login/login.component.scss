@@ -1,0 +1,65 @@
+// Define the theme colors
+$primary: #41bdad;
+$text-color: #333;
+$warn: #f74040;
+$dark-blue: #2c3e50;
+
+// Define a mixin for the alert styles
+@mixin alert {
+  border: 1px solid darken($warn, 5%);
+  background-color: lighten($warn, 40%);
+  color: $warn;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+// Define a mixin for the input styles
+@mixin input {
+  border: 1px solid #ccc;
+  padding: 5px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+// Define a mixin for the button styles
+@mixin button {
+  padding: 10px 20px;
+  background-color: $primary;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+// Apply the theme colors to the alert styles
+.alert-warning {
+  @include alert;
+}
+
+// Apply the input styles
+input[type="text"],
+input[type="password"] {
+  @include input;
+  color: $text-color;
+}
+
+// Apply the button styles
+button {
+  @include button;
+}
+
+// Override the button styles for Angular Material's button
+.mat-button {
+  @include button;
+
+  // Define the hover and active styles
+  &:hover,
+  &:active {
+    background-color: darken($primary, 5%);
+  }
+}
+
+// Override the text color for links
+a {
+  color: $dark-blue;
+}

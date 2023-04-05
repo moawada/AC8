@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { CoffeeRoutingModule } from './coffee-routing.module';
 import { CoffeeComponent } from './coffee.component';
-import { MaterialExampleModule } from '../material.modulet';
+import { MaterialExampleModule } from '../material.module';
 import { StoreModule } from '@ngrx/store';
 import * as coffeeReducers from '../store/reducers/coffee-list.reducer';
 import { MatPaginatorModule } from '@angular/material/paginator';
