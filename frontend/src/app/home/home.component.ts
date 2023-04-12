@@ -44,7 +44,7 @@ export class HomeComponent {
   }
 
   getWelcomeMessageWithParameter() {
-  this.welcomeService.executeHelloWorldBeanServiceWithPathVariable(this.name)
+  this.welcomeService.executeHelloWorldBeanServiceWithPathVariable(this.username)
     .subscribe(
       {
         next: this.handleSuccessfulResponse.bind(this),

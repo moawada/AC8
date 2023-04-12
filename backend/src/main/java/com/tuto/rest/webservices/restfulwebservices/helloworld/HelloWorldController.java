@@ -40,10 +40,22 @@ public class HelloWorldController {
         }
     }
 
-    //Now create an object as HelloWorld Bean and return it, but with pathparameter
-    //hello-world/path-variable/tuto
+    // Create an object as HelloWorld Bean and return it, but with pathparameter
+    // hello-world/path-variable/tuto
+    // Tutorial suggests, seperating functions:
+    // return new HelloWorldBean (String.format("Welcome to your Bean World, %s", name));
     @GetMapping(path="/hello-world/path-variable/{name}")
     public HelloWorldBean helloWorldBeanPathVariable(@PathVariable String name){
+    // A more realistic approach would be to 'try and catch':
+    try {
+        // The following line tests success scenario:
         return new HelloWorldBean (String.format("Welcome to your Bean World, %s", name));
+        }    
+        // The following line tests an error scenario by throwing an exception:
+        // Catch the exception and return an error message instead
+        catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Some error occurred!");
+        }
     }
+
 }
