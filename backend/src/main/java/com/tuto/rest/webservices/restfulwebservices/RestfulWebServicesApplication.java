@@ -1,13 +1,13 @@
-package com.backend.coffeelatey;
+package com.tuto.rest.webservices.restfulwebservices;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CoffeelateyApplication {
+public class RestfulWebServicesApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CoffeelateyApplication.class, args);
+		SpringApplication.run(RestfulWebServicesApplication.class, args);
 	}
 
 }

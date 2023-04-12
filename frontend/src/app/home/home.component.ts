@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
@@ -11,11 +10,9 @@ import { AuthenticationService } from '../services/authentication.service';
 export class HomeComponent {
   
   username: string;
-  message= 'some welcome message';
 
   constructor(
-    private route: ActivatedRoute,
-    private userService: AuthenticationService
+    private userService: AuthenticationService,
   ) {  }
 
   ngOnInit() {

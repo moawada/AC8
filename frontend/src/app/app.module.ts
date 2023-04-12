@@ -17,19 +17,23 @@ import { AuthenticationService } from './services/authentication.service';
 import { MyCoffeesComponent } from './coffee/my-coffees/my-coffees.component';
 import { LoginModule } from './login/login.module';
 import { LogoutModule } from './logout/logout.module';
+import { CommonModule } from '@angular/common';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
   declarations: [	
     AppComponent,
     HeaderComponent,
-    MyCoffeesComponent
+    MyCoffeesComponent,
+    HomeComponent
   ],
 
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    CommonModule,
     HttpClientModule,
     MaterialExampleModule,
     FormsModule,

@@ -12,7 +12,7 @@ export class CoffeeService {
 
   coffeeAPI = 'http://localhost:8080/coffees';
 
-  getCoffee() {
+  getCoffee() { //To adapt to new API
     return this.http.get<ICoffeeInfo[]>(this.coffeeAPI)
   }
 }

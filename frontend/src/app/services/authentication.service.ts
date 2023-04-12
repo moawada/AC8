@@ -11,8 +11,9 @@ export class AuthenticationService {
 
   constructor() { }
 
+  //Temporary hardcoded credentials
   authenticate(username: string, password: string) {
-    if(username ==="a" && password ==="1") {
+    if(username ==="moe" && password ==="moe1") {
       sessionStorage.setItem('authenticaterUser', username);
       return true;
     } 

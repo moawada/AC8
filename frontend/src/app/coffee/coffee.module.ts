@@ -9,12 +9,15 @@ import * as coffeeReducers from '../store/reducers/coffee-list.reducer';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { CoffeeDetailsComponent } from './coffee-details/coffee-details.component';
+import { CoffeeFormComponent } from './coffee-form/coffee-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
     CoffeeComponent,
-    CoffeeDetailsComponent
+    CoffeeDetailsComponent,
+    CoffeeFormComponent
   ],
   imports: [
     CommonModule,
@@ -22,6 +25,7 @@ import { CoffeeDetailsComponent } from './coffee-details/coffee-details.componen
     MatPaginatorModule,
     MatTableModule,
     MaterialExampleModule,
+    ReactiveFormsModule,
     StoreModule.forFeature(coffeeReducers.featureKey, coffeeReducers.coffeeReducer)
   ]
 })
