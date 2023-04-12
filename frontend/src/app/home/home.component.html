@@ -2,6 +2,16 @@
   <div >Welcome {{username}}!</div>
 </footer>
 
+
+<!-- Get welcome message button and message -->
+<div>
+  <button mat-raised-button color="primary" (click)="getWelcomeMessageWithParameter()"> Get Welcome Message</button>
+</div>
+<div *ngIf="welcomeMessageFromService">
+  <h2>Your customized welcome message</h2>
+  {{welcomeMessageFromService}}
+</div>
+
 <div class="container">
     <div class="coffee-header">
       <div class="coffee-header__buttons coffee-header__button-one"></div>

@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { of } from 'rxjs';
 import { ICoffeeInfo } from 'src/app/models/coffee.models';
 import { CoffeeDataService } from 'src/app/services/data/coffee-data.service';
-import { WelcomeDataService } from 'src/app/services/data/welcome-data.service';
 
 @Component({
   selector: 'app-my-coffees',
@@ -12,15 +10,12 @@ import { WelcomeDataService } from 'src/app/services/data/welcome-data.service';
 })
 export class MyCoffeesComponent implements OnInit {
 
-  welcomeMessageFromService : string;
-  name: string;
   deletionMessage: string;
   coffee: ICoffeeInfo;
 
   myCoffees: ICoffeeInfo[] = []
 
   constructor (
-    private service: WelcomeDataService,
     private coffeeService: CoffeeDataService,
     private router: Router
   ) {}
@@ -35,34 +30,6 @@ export class MyCoffeesComponent implements OnInit {
         this.myCoffees = response;
       }
     );
-  }
-
-  handleSuccessfulResponse(response: any) {
-    this.welcomeMessageFromService = response.message;
-  }
-
-  handleErrorResponse(error: any) {
-    this.welcomeMessageFromService = error.error.message;
-  }
-
-  getWelcomeMessage() {
-    this.service.executeHelloWorldBeanService()
-      .subscribe(
-        {
-          next: this.handleSuccessfulResponse.bind(this),
-          error: this.handleErrorResponse.bind(this)
-        }
-    )
-  }
-
-  getWelcomeMessageWithParameter() {
-    this.service.executeHelloWorldBeanServiceWithPathVariable(this.name)
-      .subscribe(
-        {
-          next: this.handleSuccessfulResponse.bind(this),
-          error: this.handleErrorResponse.bind(this)
-        }
-    )
   }
   
   addCoffee(){

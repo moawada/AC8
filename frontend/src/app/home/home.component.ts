@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
+import { WelcomeDataService } from '../services/data/welcome-data.service';
 
 @Component({
   selector: 'app-home',
@@ -9,9 +10,12 @@ import { AuthenticationService } from '../services/authentication.service';
 
 export class HomeComponent {
   
+  welcomeMessageFromService : string;
   username: string;
+  name: string;
 
   constructor(
+    private welcomeService: WelcomeDataService,
     private userService: AuthenticationService,
   ) {  }
 
@@ -20,4 +24,33 @@ export class HomeComponent {
       this.username = username;
     })
   }
+
+  handleSuccessfulResponse(response: any) {
+    this.welcomeMessageFromService = response.message;
+  }
+
+  handleErrorResponse(error: any) {
+    this.welcomeMessageFromService = error.error.message;
+  }
+
+  getWelcomeMessage() {
+    this.welcomeService.executeHelloWorldBeanService()
+      .subscribe(
+        {
+          next: this.handleSuccessfulResponse.bind(this),
+          error: this.handleErrorResponse.bind(this)
+        }
+    )
+  }
+
+  getWelcomeMessageWithParameter() {
+  this.welcomeService.executeHelloWorldBeanServiceWithPathVariable(this.name)
+    .subscribe(
+      {
+        next: this.handleSuccessfulResponse.bind(this),
+        error: this.handleErrorResponse.bind(this)
+      }
+  )
+  }
+
 }
