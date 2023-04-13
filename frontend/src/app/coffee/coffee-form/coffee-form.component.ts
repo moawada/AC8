@@ -58,25 +58,6 @@ export class CoffeeFormComponent implements OnInit {
     });
   }
 
-  // saveCoffee(username: string){
-  //   if (this.id ===1 ) { //create new coffee instance
-  //     this.coffeeService.createCoffee(username, this.coffee)
-  //       .subscribe(
-  //         data => {
-  //           this.router.navigate([username, 'coffees', 'my-coffees']);
-  //         }
-  //       )
-  //   }
-  //   else { //update existing coffee instance
-  //   this.coffeeService.updateCoffee(username, this.id, this.coffee)
-  //     .subscribe(
-  //       data => {
-  //         this.router.navigate([username, 'coffees', 'my-coffees']);
-  //       }
-  //     )
-  //   }
-  // }
-
   onSubmit(username: string) {
     if (this.id ===1 ) { //create new coffee instance
       this.coffeeService.createCoffee(username, this.coffee)
