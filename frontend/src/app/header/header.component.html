@@ -29,8 +29,8 @@
         Coffees
       </button>
       <mat-menu #coffeeMenu="matMenu">
-        <button *ngIf="authService.isUserLoggedIn()" mat-menu-item [routerLink]="['/coffees', username]">All Coffees</button>
-        <button *ngIf="authService.isUserLoggedIn()" mat-menu-item [routerLink]="['/coffees/', username, 'my-coffees']">My Coffees</button>
+        <button *ngIf="authService.isUserLoggedIn()" mat-menu-item [routerLink]="[ username, 'coffees' ]">All Coffees</button>
+        <button *ngIf="authService.isUserLoggedIn()" mat-menu-item [routerLink]="[ username, 'coffees', 'my-coffees']">My Coffees</button>
       </mat-menu>
     </div>
     <span class="splitter"></span>

@@ -22,7 +22,7 @@
             <td>{{coffee.variety}}</td>
             <td>{{coffee.notes}}</td>
             <td>{{coffee.intensifier}}</td>
-            <td><button mat-raised-button color="accent" (click)="updateCoffees(coffee.id)">Update</button></td>
+            <td><button mat-raised-button color="accent" (click)="updateCoffees(username, coffee.id)">Update</button></td>
             <td><button mat-raised-button color="warn" (click)="deleteCoffee(coffee.id)">Delete</button></td>
         </tr>
     </tbody>
@@ -33,5 +33,5 @@
 
 <!-- Add Coffee button -->
 <div class="add-coffee">
-    <button class="" mat-raised-button color="accent" (click)="addCoffee()">Add Coffee</button>
+    <button class="" mat-raised-button color="accent" (click)="addCoffee(username)">Add Coffee</button>
 </div>

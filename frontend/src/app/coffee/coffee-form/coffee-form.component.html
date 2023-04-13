@@ -1,15 +1,15 @@
-<form class="coffee-form" [formGroup]="coffeeForm" (ngSubmit)="onSubmit()">
+<form class="coffee-form" [formGroup]="coffeeForm" (ngSubmit)="onSubmit(username)">
     <mat-form-field>
         <input [(ngModel)]="coffee.blendName" matInput placeholder="Blend Name" formControlName="blendName" required>
             <mat-error *ngIf="coffeeForm.get('blendName')?.invalid">Please enter a blend name.</mat-error>
       </mat-form-field>
     <mat-form-field>
       <input matInput [(ngModel)]="coffee.origin" placeholder="Origin" formControlName="origin" required>
-        <mat-error *ngIf="coffeeForm.get('blendName')?.invalid">Please enter an origin.</mat-error>
+        <mat-error *ngIf="coffeeForm.get('Origin')?.invalid">Please enter an origin.</mat-error>
     </mat-form-field>
     <mat-form-field>
       <input matInput [(ngModel)]="coffee.variety" placeholder="Variety" formControlName="variety" required>
-        <mat-error *ngIf="coffeeForm.get('blendName')?.invalid">Please enter a variety.</mat-error>
+        <mat-error *ngIf="coffeeForm.get('Variety')?.invalid">Please enter a variety.</mat-error>
     </mat-form-field>
     <mat-form-field>
       <input matInput [(ngModel)]="coffee.notes" placeholder="Notes" formControlName="notes">
@@ -17,7 +17,7 @@
     <mat-form-field>
       <mat-select [(ngModel)]="coffee.intensifier" placeholder="Intensifier" formControlName="intensifier" required>
         <mat-option *ngFor="let intensifier of intensifiers" [value]="intensifier">{{intensifier}}</mat-option>
-            <mat-error *ngIf="coffeeForm.get('blendName')?.invalid">Please select an intensifier.</mat-error>
+            <mat-error *ngIf="coffeeForm.get('Intensifier')?.invalid">Please select an intensifier.</mat-error>
       </mat-select>
     </mat-form-field>
     <button mat-raised-button color="primary" type="submit" [disabled]="coffeeForm.invalid">Save</button>

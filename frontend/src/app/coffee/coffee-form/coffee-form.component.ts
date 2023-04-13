@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ICoffeeInfo } from 'src/app/models/coffee.models';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { CoffeeDataService } from 'src/app/services/data/coffee-data.service';
 
 @Component({
@@ -11,6 +12,7 @@ import { CoffeeDataService } from 'src/app/services/data/coffee-data.service';
 })
 export class CoffeeFormComponent implements OnInit {
 
+  username: string;
   id: number;
   coffee: ICoffeeInfo;
   coffeeForm: FormGroup;
@@ -19,10 +21,12 @@ export class CoffeeFormComponent implements OnInit {
   constructor(
     private coffeeService: CoffeeDataService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private authService: AuthenticationService
   ) { }
 
   ngOnInit() {
+    this.getUserName();
     this.id = this.route.snapshot.params['id'];
     this.initForm(); //Mock values in object to avoid console errors at compile time
 
@@ -33,6 +37,12 @@ export class CoffeeFormComponent implements OnInit {
           coffeeData => this.coffee = coffeeData
         )
     }
+  }
+
+  getUserName(){
+    this.authService.getUserName().subscribe((username) => {
+      this.username = username;
+    })
   }
 
   initForm() {
@@ -48,31 +58,41 @@ export class CoffeeFormComponent implements OnInit {
     });
   }
 
-  saveCoffee(){
+  // saveCoffee(username: string){
+  //   if (this.id ===1 ) { //create new coffee instance
+  //     this.coffeeService.createCoffee(username, this.coffee)
+  //       .subscribe(
+  //         data => {
+  //           this.router.navigate([username, 'coffees', 'my-coffees']);
+  //         }
+  //       )
+  //   }
+  //   else { //update existing coffee instance
+  //   this.coffeeService.updateCoffee(username, this.id, this.coffee)
+  //     .subscribe(
+  //       data => {
+  //         this.router.navigate([username, 'coffees', 'my-coffees']);
+  //       }
+  //     )
+  //   }
+  // }
+
+  onSubmit(username: string) {
     if (this.id ===1 ) { //create new coffee instance
-      this.coffeeService.createCoffee('moe', this.coffee)
+      this.coffeeService.createCoffee(username, this.coffee)
         .subscribe(
           data => {
-            this.router.navigate(['/coffees/my-coffees']);
+            this.router.navigate([username, 'coffees', 'my-coffees']);
           }
         )
     }
     else { //update existing coffee instance
-    this.coffeeService.updateCoffee('moe', this.id, this.coffee)
+    this.coffeeService.updateCoffee(username, this.id, this.coffee)
       .subscribe(
         data => {
-          this.router.navigate(['/coffees/my-coffees']);
+          this.router.navigate([username, 'coffees', 'my-coffees']);
         }
       )
     }
-  }
-
-  onSubmit() {
-    this.coffeeService.updateCoffee('moe', this.id, this.coffee)
-      .subscribe(
-        data => {
-          this.router.navigate(['/coffees/my-coffees']);
-        }
-      )
   }
 }

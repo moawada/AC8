@@ -23,7 +23,7 @@ const routes: Routes = [
     canActivate: [RouteGuardService]
   },
   {
-    path: 'coffees/:name',
+    path: ':name/coffees',
     loadChildren: () =>
       import('./coffee/coffee.module').then(m => m.CoffeeModule),
       canActivate: [RouteGuardService]

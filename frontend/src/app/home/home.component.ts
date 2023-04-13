@@ -20,9 +20,7 @@ export class HomeComponent {
   ) {  }
 
   ngOnInit() {
-    this.userService.getUserName().subscribe((username) => {
-      this.username = username;
-    })
+    this.getUserName();
   }
 
   handleSuccessfulResponse(response: any) {
@@ -44,13 +42,19 @@ export class HomeComponent {
   }
 
   getWelcomeMessageWithParameter(username: string) {
-  this.welcomeService.executeHelloWorldBeanServiceWithPathVariable(username)
-    .subscribe(
-      {
-        next: this.handleSuccessfulResponse.bind(this),
-        error: this.handleErrorResponse.bind(this)
-      }
-  )
+    this.welcomeService.executeHelloWorldBeanServiceWithPathVariable(username)
+      .subscribe(
+        {
+          next: this.handleSuccessfulResponse.bind(this),
+          error: this.handleErrorResponse.bind(this)
+        }
+    )
+  }
+
+  getUserName(){
+    this.userService.getUserName().subscribe((username) => {
+      this.username = username;
+    })
   }
 
 }

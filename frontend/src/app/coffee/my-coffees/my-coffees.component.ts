@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ICoffeeInfo } from 'src/app/models/coffee.models';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { CoffeeDataService } from 'src/app/services/data/coffee-data.service';
 
 @Component({
@@ -10,6 +11,7 @@ import { CoffeeDataService } from 'src/app/services/data/coffee-data.service';
 })
 export class MyCoffeesComponent implements OnInit {
 
+  username: string;
   deletionMessage: string;
   coffee: ICoffeeInfo;
 
@@ -17,11 +19,19 @@ export class MyCoffeesComponent implements OnInit {
 
   constructor (
     private coffeeService: CoffeeDataService,
-    private router: Router
+    private router: Router,
+    private authService: AuthenticationService
   ) {}
 
   ngOnInit() {
+    this.getUserName();
     this.refreshCoffees();
+  }
+
+  getUserName(){
+    this.authService.getUserName().subscribe((username) => {
+      this.username = username;
+    })
   }
 
   refreshCoffees() {
@@ -32,8 +42,8 @@ export class MyCoffeesComponent implements OnInit {
     );
   }
   
-  addCoffee(){
-    this.router.navigate(['coffees/my-coffees', -1]);      
+  addCoffee(username: string){
+    this.router.navigate([username, 'coffees','my-coffees', -1]);      
   }
 
   deleteCoffee(id: number) {
@@ -45,7 +55,7 @@ export class MyCoffeesComponent implements OnInit {
     )
   }
 
-  updateCoffees(id: number) {
-    this.router.navigate(['coffees/my-coffees', id]);
+  updateCoffees(username: string, id: number) {
+    this.router.navigate([username, 'coffees', 'my-coffees', id]);
   }
 }
