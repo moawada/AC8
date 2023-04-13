@@ -5,7 +5,7 @@
 
 <!-- Get welcome message button and message -->
 <div>
-  <button mat-raised-button color="primary" (click)="getWelcomeMessageWithParameter()"> Get Welcome Message</button>
+  <button mat-raised-button color="primary" (click)="getWelcomeMessageWithParameter(username)"> Get Welcome Message</button>
 </div>
 <div *ngIf="welcomeMessageFromService">
   <h2>Your customized welcome message</h2>

@@ -43,8 +43,8 @@ export class HomeComponent {
     )
   }
 
-  getWelcomeMessageWithParameter() {
-  this.welcomeService.executeHelloWorldBeanServiceWithPathVariable(this.username)
+  getWelcomeMessageWithParameter(username: string) {
+  this.welcomeService.executeHelloWorldBeanServiceWithPathVariable(username)
     .subscribe(
       {
         next: this.handleSuccessfulResponse.bind(this),
