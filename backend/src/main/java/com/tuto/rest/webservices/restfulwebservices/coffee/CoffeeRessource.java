@@ -27,17 +27,22 @@ public class CoffeeRessource {
     private CoffeeHardCodedService coffeeService;
 
 
-    @GetMapping("/users/{username}/my-coffees")
+    @GetMapping("/users/{username}/coffees")
     public List<Coffee> getAllCoffees(@PathVariable String username){
         return coffeeService.findAll();
     }
 
-    @GetMapping("/users/{username}/my-coffees/{id}")
+    @GetMapping("/users/{username}/coffees/my-coffees")
+    public List<Coffee> getMyCoffees(@PathVariable String username){
+        return coffeeService.findAll();
+    }
+
+    @GetMapping("/users/{username}/coffees/my-coffees/{id}")
     public Coffee getCoffee(@PathVariable String username, @PathVariable long id){
         return coffeeService.findById(id);
     }
 
-    @DeleteMapping("/users/{username}/my-coffees/{id}")
+    @DeleteMapping("/users/{username}/coffees/my-coffees/{id}")
     public ResponseEntity<Void> deleteCoffee(@PathVariable String username, @PathVariable long id) {
         Coffee coffee = coffeeService.deleteById(id);
         if(coffee!=null){
@@ -46,7 +51,7 @@ public class CoffeeRessource {
         return ResponseEntity.notFound().build();
     }
 
-    @PutMapping("/users/{username}/my-coffees/{id}")
+    @PutMapping("/users/{username}/coffees/my-coffees/{id}")
     public ResponseEntity<Coffee> updateCoffee(
             @PathVariable String username, 
             @PathVariable long id,
@@ -56,7 +61,7 @@ public class CoffeeRessource {
         return new ResponseEntity<Coffee>(coffeeUpdated, HttpStatus.OK);
     }
 
-    @PostMapping("/users/{username}/my-coffees")
+    @PostMapping("/users/{username}/coffees/my-coffees")
     public ResponseEntity<Void> postCoffee(@PathVariable String username, @RequestBody Coffee coffee){
 
         Coffee createdCoffee = coffeeService.save(coffee);

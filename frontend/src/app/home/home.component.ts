@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { AuthenticationService } from '../services/authentication.service';
 import { WelcomeDataService } from '../services/data/welcome-data.service';
+import { BasicAuthenticationService } from '../services/basic-authentication.service';
+import { Observable, map } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -16,11 +17,11 @@ export class HomeComponent {
 
   constructor(
     private welcomeService: WelcomeDataService,
-    private userService: AuthenticationService,
+    private basicAuthService: BasicAuthenticationService
   ) {  }
 
   ngOnInit() {
-    this.getUserName();
+   this.getUserName();  
   }
 
   handleSuccessfulResponse(response: any) {
@@ -52,9 +53,14 @@ export class HomeComponent {
   }
 
   getUserName(){
-    this.userService.getUserName().subscribe((username) => {
-      this.username = username;
-    })
+    const username = this.basicAuthService.getAuthenticatedUser();
   }
+
+  // getUserName(): Observable<string> {
+  //   return this.basicAuthService.executeAuthegetnticationService(this.username)
+  //     .pipe(
+  //       map(data => data.username)
+  //     );
+  // }
 
 }

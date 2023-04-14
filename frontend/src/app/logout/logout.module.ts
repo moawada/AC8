@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LogoutComponent } from './logout.component';
-import { AuthenticationService } from '../services/authentication.service';
+// import { AuthenticationService } from '../services/authentication.service';
 import { MaterialExampleModule } from '../material.module';
+import { BasicAuthenticationService } from '../services/basic-authentication.service';
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import { MaterialExampleModule } from '../material.module';
     LogoutComponent
   ],
   providers: [
-    AuthenticationService
+    // AuthenticationService,
+    BasicAuthenticationService
   ]
 })
 export class LogoutModule { }

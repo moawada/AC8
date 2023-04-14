@@ -1,11 +1,11 @@
-package com.tuto.rest.webservices.restfulwebservices.helloworld;
+package com.tuto.rest.webservices.restfulwebservices.basic.auth;
 
-public class HelloWorldBean {
+public class AuthenticationBean {
 
     private String message;
 
     //Constructor
-    public HelloWorldBean(String message) {
+    public AuthenticationBean(String message) {
         super();
         this.message = message;
     }
@@ -23,7 +23,7 @@ public class HelloWorldBean {
     //toString
     @Override
     public String toString() {
-        return super.toString();
+        return String.format("HelloWorldBean [message=%]", message);
     }
 
 }

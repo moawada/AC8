@@ -8,17 +8,19 @@ import { MaterialExampleModule } from './material.module';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { HeaderComponent } from './header/header.component';
 import { EffectsModule } from '@ngrx/effects';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { CoffeeListEffects } from './store/effects/coffee-list.effects';
 import { FormsModule } from '@angular/forms';
-import { AuthenticationService } from './services/authentication.service';
+// import { AuthenticationService } from './services/authentication.service';
 import { MyCoffeesComponent } from './coffee/my-coffees/my-coffees.component';
 import { LoginModule } from './login/login.module';
 import { LogoutModule } from './logout/logout.module';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home/home.component';
+import { HttpInterceptorBasicAuthService } from './services/http/http-interceptor-basic-auth.service';
+import { BasicAuthenticationService } from './services/basic-authentication.service';
 
 
 @NgModule({
@@ -54,7 +56,12 @@ import { HomeComponent } from './home/home.component';
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
       useValue: {appearance: 'fill'}
     },
-    AuthenticationService
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpInterceptorBasicAuthService,
+      multi: true
+    },
+      BasicAuthenticationService
   ],
 
   bootstrap: [AppComponent]

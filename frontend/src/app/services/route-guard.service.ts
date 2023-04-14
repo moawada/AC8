@@ -1,6 +1,6 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
-import { AuthenticationService } from './authentication.service';
+import { BasicAuthenticationService } from './basic-authentication.service';
 
 
 @Injectable({
@@ -9,13 +9,13 @@ import { AuthenticationService } from './authentication.service';
 export class RouteGuardService  {
 
   constructor(
-    private authService : AuthenticationService,
+    private basicAuthService: BasicAuthenticationService,
     private router: Router
   ) { }
 
   // Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree;
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if(this.authService.isUserLoggedIn()){
+    if(this.basicAuthService.isUserLoggedIn()){
       return true;
     }
     else {

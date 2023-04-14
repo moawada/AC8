@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ICoffeeInfo } from 'src/app/models/coffee.models';
-import { AuthenticationService } from 'src/app/services/authentication.service';
+import { BasicAuthenticationService } from 'src/app/services/basic-authentication.service';
 import { CoffeeDataService } from 'src/app/services/data/coffee-data.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { CoffeeDataService } from 'src/app/services/data/coffee-data.service';
 })
 export class MyCoffeesComponent implements OnInit {
 
-  username: string;
+  username: any;
   deletionMessage: string;
   coffee: ICoffeeInfo;
 
@@ -20,22 +20,22 @@ export class MyCoffeesComponent implements OnInit {
   constructor (
     private coffeeService: CoffeeDataService,
     private router: Router,
-    private authService: AuthenticationService
+    private basicAuthService: BasicAuthenticationService
   ) {}
 
   ngOnInit() {
-    this.getUserName();
+    this.getUsername();
     this.refreshCoffees();
   }
 
-  getUserName(){
-    this.authService.getUserName().subscribe((username) => {
-      this.username = username;
-    })
+  getUsername(){
+    this.username = this.basicAuthService.getAuthenticatedUser();
+      return this.username;
   }
 
+
   refreshCoffees() {
-    this.coffeeService.retrieveAllCoffees('moe').subscribe(    
+    this.coffeeService.retrieveMyCoffees(this.username).subscribe(    
       response => {
         this.myCoffees = response;
       }
@@ -47,7 +47,7 @@ export class MyCoffeesComponent implements OnInit {
   }
 
   deleteCoffee(id: number) {
-    this.coffeeService.deleteCoffee('moe', id).subscribe(
+    this.coffeeService.deleteCoffee(this.username, id).subscribe(
       response => {
         this.deletionMessage = `Deletion of Coffee ${id} is successful`;
         this.refreshCoffees();

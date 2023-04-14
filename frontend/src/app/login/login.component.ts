@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthenticationService } from '../services/authentication.service';
+import { BasicAuthenticationService } from '../services/basic-authentication.service';
 
 
 @Component({
@@ -18,22 +18,26 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private userService: AuthenticationService
+    private basicAuthService: BasicAuthenticationService
   ) { }
 
   ngOnInit() {
-    this.isUserLoggedIn = this.userService.isUserLoggedIn();
+    // this.isUserLoggedIn = this.basicAuthService.isUserLoggedIn();
   }
 
-  handleLogin() {
-    console.log("username: ", this.username);
-    console.log("password: ", this.password);
-    if(this.userService.authenticate(this.username, this.password)) {
-      this.invalidLogIn = false;
-      this.userService.setUsername(this.username);
-      this.router.navigate([this.username, 'home']);
-    } else {
-      this.invalidLogIn = true;
-    }
+  handleBasicAuthLogin() {
+    this.basicAuthService.executeAuthenticationService(this.username, this.password)
+      .subscribe({
+        next: (data) => {
+          console.log("data:", data);
+          this.router.navigate([this.username, 'home']);
+          this.invalidLogIn = false;        
+        },
+        error: (error) => {
+          console.log(error);
+          this.invalidLogIn = false;        
+        }
+      });
   }
+  
 }

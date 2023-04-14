@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ICoffeeInfo } from 'src/app/models/coffee.models';
-import { AuthenticationService } from 'src/app/services/authentication.service';
+import { BasicAuthenticationService } from 'src/app/services/basic-authentication.service';
 import { CoffeeDataService } from 'src/app/services/data/coffee-data.service';
 
 @Component({
@@ -12,7 +12,7 @@ import { CoffeeDataService } from 'src/app/services/data/coffee-data.service';
 })
 export class CoffeeFormComponent implements OnInit {
 
-  username: string;
+  username: any;
   id: number;
   coffee: ICoffeeInfo;
   coffeeForm: FormGroup;
@@ -22,11 +22,11 @@ export class CoffeeFormComponent implements OnInit {
     private coffeeService: CoffeeDataService,
     private route: ActivatedRoute,
     private router: Router,
-    private authService: AuthenticationService
+    private basicAuthService: BasicAuthenticationService
   ) { }
 
   ngOnInit() {
-    this.getUserName();
+    this.getUsername();
     this.id = this.route.snapshot.params['id'];
     this.initForm(); //Mock values in object to avoid console errors at compile time
 
@@ -39,11 +39,11 @@ export class CoffeeFormComponent implements OnInit {
     }
   }
 
-  getUserName(){
-    this.authService.getUserName().subscribe((username) => {
-      this.username = username;
-    })
+  getUsername(){
+    this.username = this.basicAuthService.getAuthenticatedUser();
+      return this.username;
   }
+
 
   initForm() {
     this.coffee = {id: this.id, uid: '', blendName: '', origin: '', variety: '', notes: '', intensifier: ''};

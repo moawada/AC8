@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '../services/authentication.service';
+import { BasicAuthenticationService } from '../services/basic-authentication.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -8,16 +9,19 @@ import { AuthenticationService } from '../services/authentication.service';
 })
 export class HeaderComponent implements OnInit {
 
-  username: string;
+  username: any;
 
   constructor (
-    public authService: AuthenticationService
+    public basicAuthService: BasicAuthenticationService
   ) { }
 
   ngOnInit() {
-    this.authService.getUserName().subscribe((username) => {
-      this.username = username;
-    })
+    this.getUsername();
+  }
+
+  getUsername(){
+    this.username = this.basicAuthService.getAuthenticatedUser();
+      return this.username;
   }
 
   title = 'Coffeelatey';
