@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BasicAuthenticationService } from '../services/basic-authentication.service';
-import { Observable } from 'rxjs';
+import { JwtAuthenticationService } from '../services/jwt-authentication.service';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +11,7 @@ export class HeaderComponent implements OnInit {
   username: any;
 
   constructor (
-    public basicAuthService: BasicAuthenticationService
+    public jwtAuthService: JwtAuthenticationService
   ) { }
 
   ngOnInit() {
@@ -20,7 +19,7 @@ export class HeaderComponent implements OnInit {
   }
 
   getUsername(){
-    this.username = this.basicAuthService.getAuthenticatedUser();
+    this.username = this.jwtAuthService.getAuthenticatedUser();
       return this.username;
   }
 

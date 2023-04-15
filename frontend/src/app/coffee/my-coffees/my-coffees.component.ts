@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ICoffeeInfo } from 'src/app/models/coffee.models';
-import { BasicAuthenticationService } from 'src/app/services/basic-authentication.service';
+import { JwtAuthenticationService } from 'src/app/services/jwt-authentication.service';
 import { CoffeeDataService } from 'src/app/services/data/coffee-data.service';
 
 @Component({
@@ -20,7 +20,7 @@ export class MyCoffeesComponent implements OnInit {
   constructor (
     private coffeeService: CoffeeDataService,
     private router: Router,
-    private basicAuthService: BasicAuthenticationService
+    private jwtAuthService: JwtAuthenticationService
   ) {}
 
   ngOnInit() {
@@ -29,7 +29,7 @@ export class MyCoffeesComponent implements OnInit {
   }
 
   getUsername(){
-    this.username = this.basicAuthService.getAuthenticatedUser();
+    this.username = this.jwtAuthService.getAuthenticatedUser();
       return this.username;
   }
 

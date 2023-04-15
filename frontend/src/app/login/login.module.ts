@@ -4,8 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { LoginComponent } from './login.component';
 import { MaterialExampleModule } from '../material.module';
-// import { AuthenticationService } from '../services/authentication.service';
-import { BasicAuthenticationService } from '../services/basic-authentication.service';
+import { JwtAuthenticationService } from '../services/jwt-authentication.service';
 
 
 @NgModule({
@@ -18,8 +17,7 @@ import { BasicAuthenticationService } from '../services/basic-authentication.ser
     LoginComponent
   ],
   providers: [
-    // AuthenticationService,
-    BasicAuthenticationService
+    JwtAuthenticationService
   ]
 })
 

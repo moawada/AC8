@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ICoffeeInfo } from 'src/app/models/coffee.models';
-import { BasicAuthenticationService } from 'src/app/services/basic-authentication.service';
+import { JwtAuthenticationService } from 'src/app/services/jwt-authentication.service';
 import { CoffeeDataService } from 'src/app/services/data/coffee-data.service';
 
 @Component({
@@ -22,7 +22,7 @@ export class CoffeeFormComponent implements OnInit {
     private coffeeService: CoffeeDataService,
     private route: ActivatedRoute,
     private router: Router,
-    private basicAuthService: BasicAuthenticationService
+    private jwtAuthService: JwtAuthenticationService
   ) { }
 
   ngOnInit() {
@@ -40,7 +40,7 @@ export class CoffeeFormComponent implements OnInit {
   }
 
   getUsername(){
-    this.username = this.basicAuthService.getAuthenticatedUser();
+    this.username = this.jwtAuthService.getAuthenticatedUser();
       return this.username;
   }
 

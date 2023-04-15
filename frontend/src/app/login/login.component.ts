@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { BasicAuthenticationService } from '../services/basic-authentication.service';
+import { JwtAuthenticationService } from '../services/jwt-authentication.service';
 
 
 @Component({
@@ -18,26 +18,24 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private basicAuthService: BasicAuthenticationService
+    private jwtAuthService: JwtAuthenticationService
   ) { }
 
   ngOnInit() {
-    // this.isUserLoggedIn = this.basicAuthService.isUserLoggedIn();
+    this.isUserLoggedIn = this.jwtAuthService.isUserLoggedIn();
   }
 
-  handleBasicAuthLogin() {
-    this.basicAuthService.executeAuthenticationService(this.username, this.password)
+  handleJWTAuthLogin() {
+    this.jwtAuthService.executeJWTAuthenticationService(this.username, this.password)
       .subscribe({
         next: (data) => {
-          console.log("data:", data);
-          this.router.navigate([this.username, 'home']);
+          this.router.navigate(['home' , this.username]);
           this.invalidLogIn = false;        
         },
         error: (error) => {
-          console.log(error);
           this.invalidLogIn = false;        
         }
       });
   }
-  
+
 }

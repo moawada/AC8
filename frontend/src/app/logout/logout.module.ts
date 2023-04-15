@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LogoutComponent } from './logout.component';
-// import { AuthenticationService } from '../services/authentication.service';
 import { MaterialExampleModule } from '../material.module';
-import { BasicAuthenticationService } from '../services/basic-authentication.service';
+import { JwtAuthenticationService } from '../services/jwt-authentication.service';
 
 @NgModule({
   imports: [
@@ -14,8 +13,7 @@ import { BasicAuthenticationService } from '../services/basic-authentication.ser
     LogoutComponent
   ],
   providers: [
-    // AuthenticationService,
-    BasicAuthenticationService
+    JwtAuthenticationService
   ]
 })
 export class LogoutModule { }

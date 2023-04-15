@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
-import { BasicAuthenticationService } from './basic-authentication.service';
+import { JwtAuthenticationService } from './jwt-authentication.service';
 
 
 @Injectable({
@@ -9,13 +9,12 @@ import { BasicAuthenticationService } from './basic-authentication.service';
 export class RouteGuardService  {
 
   constructor(
-    private basicAuthService: BasicAuthenticationService,
+    private jwtAuthService: JwtAuthenticationService,
     private router: Router
   ) { }
 
-  // Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree;
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if(this.basicAuthService.isUserLoggedIn()){
+    if(this.jwtAuthService.isUserLoggedIn()){
       return true;
     }
     else {
@@ -23,5 +22,4 @@ export class RouteGuardService  {
       return false;
     }
   }
-  // CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree;
 }

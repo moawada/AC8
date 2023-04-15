@@ -18,7 +18,7 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: ':name/home',
+    path: 'home/:name',
     component: HomeComponent,
     canActivate: [RouteGuardService]
   },

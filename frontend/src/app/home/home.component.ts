@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { WelcomeDataService } from '../services/data/welcome-data.service';
-import { BasicAuthenticationService } from '../services/basic-authentication.service';
-import { Observable, map } from 'rxjs';
+import { JwtAuthenticationService } from '../services/jwt-authentication.service';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +16,7 @@ export class HomeComponent {
 
   constructor(
     private welcomeService: WelcomeDataService,
-    private basicAuthService: BasicAuthenticationService
+    private jwtAuthService: JwtAuthenticationService
   ) {  }
 
   ngOnInit() {
@@ -53,11 +52,11 @@ export class HomeComponent {
   }
 
   getUserName(){
-    const username = this.basicAuthService.getAuthenticatedUser();
+    const username = this.jwtAuthService.getAuthenticatedUser();
   }
 
   // getUserName(): Observable<string> {
-  //   return this.basicAuthService.executeAuthegetnticationService(this.username)
+  //   return this.jwtAuthService.executeAuthegetnticationService(this.username)
   //     .pipe(
   //       map(data => data.username)
   //     );

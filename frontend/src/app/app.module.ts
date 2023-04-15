@@ -20,7 +20,7 @@ import { LogoutModule } from './logout/logout.module';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home/home.component';
 import { HttpInterceptorBasicAuthService } from './services/http/http-interceptor-basic-auth.service';
-import { BasicAuthenticationService } from './services/basic-authentication.service';
+import { JwtAuthenticationService } from './services/jwt-authentication.service';
 
 
 @NgModule({
@@ -61,7 +61,7 @@ import { BasicAuthenticationService } from './services/basic-authentication.serv
       useClass: HttpInterceptorBasicAuthService,
       multi: true
     },
-      BasicAuthenticationService
+      JwtAuthenticationService
   ],
 
   bootstrap: [AppComponent]
