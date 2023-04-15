@@ -1,4 +1,4 @@
-package com.tuto.rest.webservices.restfulwebservices.basic.auth;
+package com.tuto.rest.basic.auth;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
