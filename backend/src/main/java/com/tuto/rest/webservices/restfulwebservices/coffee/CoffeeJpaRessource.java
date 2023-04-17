@@ -23,10 +23,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 @RestController
 public class CoffeeJpaRessource {
 
-    //To connect with @Service in CoffeeHardCodedService.java
-    // @Autowired 
-    // private CoffeeHardCodedService coffeeService;
-
     @Autowired //To connect with @Service in CoffeeJpaRepository.java
     private CoffeeJpaRepository coffeeJpaRepository;
 
@@ -39,20 +35,17 @@ public class CoffeeJpaRessource {
     @GetMapping("/jpa/{username}/coffees/my-coffees")
     public List<Coffee> getMyCoffees(@PathVariable String username){
         return coffeeJpaRepository.findByUsername(username);
-        // return coffeeService.findAll();
     }
 
     @GetMapping("/jpa/{username}/coffees/my-coffees/{id}")
     public Coffee getCoffee(@PathVariable String username, @PathVariable long id){
         //findById(id ) in JpaRepo returns an optional back; reason for .get()
         return coffeeJpaRepository.findById(id).get(); 
-        // return coffeeService.findById(id);
     }
 
     @DeleteMapping("/jpa/{username}/coffees/my-coffees/{id}")
     public ResponseEntity<Void> deleteCoffee(@PathVariable String username, @PathVariable long id) {
 
-        //Coffee coffee = coffeeService.deleteById(id);
         coffeeJpaRepository.deleteById(id);      
             return ResponseEntity.noContent().build();
     }
