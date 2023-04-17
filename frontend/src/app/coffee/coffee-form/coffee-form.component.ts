@@ -32,7 +32,7 @@ export class CoffeeFormComponent implements OnInit {
 
     //If it not a new coffeem retrieve & subscribe. 
     if (this.id != -1){ 
-      this.coffeeService.retrieveCoffee('moe', this.id)
+      this.coffeeService.retrieveMyCoffeeById('moe', this.id)
         .subscribe(
           coffeeData => this.coffee = coffeeData
         )
@@ -59,7 +59,9 @@ export class CoffeeFormComponent implements OnInit {
   }
 
   onSubmit(username: string) {
-    if (this.id ===1 ) { //create new coffee instance
+    // === better for comparing objects
+    // == better for comparing primitves
+    if (this.id == -1 ) { //create new coffee instance
       this.coffeeService.createCoffee(username, this.coffee)
         .subscribe(
           data => {
